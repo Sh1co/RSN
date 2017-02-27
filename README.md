@@ -18,4 +18,4 @@ to do:
 Ahmed:
   fix counter
 Sherif:
-  eshta 3aleek
+  add home link to sidebar
