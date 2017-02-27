@@ -2,90 +2,15 @@
 <html>
 
   <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDtLkZM2GTYbIdIP-IiSmd4tC5A1K3R1mk",
-      authDomain: "riadasn-21318.firebaseapp.com",
-      databaseURL: "https://riadasn-21318.firebaseio.com",
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
-
-    var pcounterRef = firebase.database().ref('pcounter');
-    var pcount=-1;
-    pcounterRef.on('value', function(snapshot) {
-      pcount = snapshot.val();
-      document.getElementById("postbutton").disabled = false;
-    });
-
-
-  </script>
 
   <a href="index.html">Home</a> <br>
 
   <p id="gpid"></p>
-
-  <script>
-    var gpid = sessionStorage.getItem('cg');
-    document.getElementById("gpid").innerHTML = "Group id : " + gpid;
-  </script>
 
   Name: <input type="text" id="pname"> Leave blank for "Anonymous" <br>
   Subject: <input type="text" size="40" id="psubject"><br>
   Content: <br> <textarea rows="4" cols="50" id="pcontent"></textarea> <br>
   <button disabled=true onclick="uploadPost();" id="postbutton">Post</button>
 
-  <script>
-    function uploadPost() {
-      var pname = document.getElementById("pname").value;
-      if (pname == "") pname = "Anonymous";
-      var psubject = document.getElementById("psubject").value;
-      var pcontent = document.getElementById("pcontent").value;
-      var pdate = ( new Date() ).toString();
-
-      /*pcounterRef.on('value', function(snapshot) {
-        pcount = snapshot.val();
-        firebase.database().ref('groups/' + gpid + '/' + pcount).set({
-          pname: pname,
-          psubject: psubject,
-          pcontent: pcontent,
-          pdate: pdate
-        }).then(
-          function() {
-            alert("yaaaaaaaay");
-          }
-        );
-        //location.reload();
-      });*/
-
-      //while( pcount == -1 ) {}
-
-      firebase.database().ref('groups/' + gpid + '/' + pcount).set({
-        pname: pname,
-        psubject: psubject,
-        pcontent: pcontent,
-        pdate: pdate
-      }).then(
-        function() {
-          alert("The post was published with ID : " + pcount);
-          location.reload();
-        }
-      );
-
-      /*firebase.database().ref('groups/' + gpid + '/' + pcount).set({
-        pname: pname,
-        psubject: psubject,
-        pcontent: pcontent,
-        pdate: pdate
-      });*/
-
-      pcounterRef.transaction(function(currentValue) {
-          return currentValue + 1;
-      });
-    }
-
-  </script>
-
+  <script src="groups.js"></script>
 </html>
