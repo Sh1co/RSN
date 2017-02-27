@@ -67,7 +67,14 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
 
     pstr += "<h3>" + childData.psubject + "</h3>";
     pstr += "By : " + childData.pname + ", posted at : " + childData.pdate + "<br>";
-    pstr += childData.pcontent + "<br>";
+    var cont = childData.pcontent;
+    for (var i = 0, len = cont.length; i < len; i++){
+    	if(cont[i]=='<'||cont[i]=='>'){
+    		cont = "<h3 style = \"color : red \">HAAAX!</h3>";
+    		console.log("in");
+    	};
+    }
+    pstr += cont	 + "<br>";
 
     pstr += "<br>";
 
