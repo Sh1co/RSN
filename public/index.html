@@ -2,6 +2,14 @@
 <html>
   <head>
     <title>RSN</title>
+
+  
+
+  <script>
+    function chooseGroup ( groupid ) {
+      sessionStorage.setItem('cg', groupid );
+    }
+  </script>
     <style>
       body {
         font-family: Roboto, Arial, sans-serif;
@@ -55,8 +63,8 @@ li a:hover {
   <div id="whole">
     <div class="verticalLine">
       <ul id="l_list">
-      <li><a>Item 1</a></li>
-      <li><a>Item 2</a></li>
+      <li><a href="groups.html" onclick="chooseGroup('test1');">Test1</a></li>
+      <li><a href="groups.html" onclick="chooseGroup('test2');">Test2</a></li>
       </ul>
     </div>
     <div class="main" id = "center" align ="center">
