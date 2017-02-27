@@ -63,20 +63,27 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
-    pstr += "<br>";
-
-    pstr += "<h3>" + childData.psubject + "</h3>";
-    pstr += "By : " + childData.pname + ", posted at : " + childData.pdate + "<br>";
-    var cont = childData.pcontent;
+    var cont = childData.pcontent+childData.pname+childData.psubject+childData.pdate;
+    var fail = false;
     for (var i = 0, len = cont.length; i < len; i++){
     	if(cont[i]=='<'||cont[i]=='>'){
-    		cont = "<h3 style = \"color : red \">HAAAX!</h3>";
+    		pstr += "<h3 style = \"color : red \">NICER TRY</h3><br>";
+    		fail = true;
+    		pstr += "<br>";
+    		break;
     		console.log("in");
     	};
     }
-    pstr += cont	 + "<br>";
 
-    pstr += "<br>";
+    if(!fail){
+	    pstr += "<br>";
+	    pstr += "<h3>" + childData.psubject + "</h3>";
+	    pstr += "By : " + childData.pname + ", posted at : " + childData.pdate + "<br>";
+	    pstr += childData.pcontent + "<br>";
+	    pstr += "<br>";
+	};
+
+    
 
     document.getElementById("pdisplay").innerHTML = pstr;
 
