@@ -98,7 +98,9 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
 	    pstr += "<h5 style=\"display:inline;\">" + name + "</h5> <h6 style=\"display:inline;\">@: " + dat + "</h6><br>";
 	    pstr += "<h3>" + subj + "</h3>";
 	    pstr += cont + "<br>";
-	    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; text-decoration: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
+	    /*When we make authentication an if will be here to see the tpye of user*/
+	    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; border: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
+	    /*and will end here XD*/
 	    pstr += "<br>";
 
 	//};
