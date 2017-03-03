@@ -1,7 +1,6 @@
-var groups = [ 'test1' , 'test2' , 'Hamada'];
+var groups = [ 'test1' , 'test2' , 'Hamada','Hamada1','Hamada2','Hamada3','Hamada4','Hamada5','Hamada6','Hamada7','Hamada8','Hamada9','test1' , 'test2' , 'Hamada','Hamada1','Hamada2','Hamada3','Hamada4','Hamada5','Hamada6','Hamada7','Hamada8','Hamada9'];
 
 var out = "";
-out += '<li><a href="index.html">Home</a></li>';
 
 for (i in groups) {
   var grpstr = ""; grpstr += "'" + groups[i] + "'";

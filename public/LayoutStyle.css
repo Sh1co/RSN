@@ -32,9 +32,17 @@ li a:hover {
 .verticalLine {
   border-left: thick solid #575a87;
   display: inline-block;
+  float:left;
 }
 .main {
+  display: inline-block;
+  /*float:middle;*/
+  align-self: center
+  width:1000;
+}
+.main1 {
   /*display: inline-block;*/
+  /*float:middle;*/
   align-self: center
   width:1000;
 }
