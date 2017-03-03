@@ -57,6 +57,9 @@ function uploadPost() {
     }
   );
 }
+function Deletepost(input){
+	firebase.database().ref('groups/' + gpid + '/' + input).remove();
+}
 
 var gpid = sessionStorage.getItem('cg');
 if (gpid == null) gpid = "test1";
@@ -78,9 +81,10 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
     		console.log("in");
     	};
     }*/
-    var cont = childData.pcontent;
-    var name = childData.pname;
-    var subj = childData.psubject;
+    var cont = htmlEncode(childData.pcontent);
+    var name = htmlEncode(childData.pname);
+    var subj = htmlEncode(childData.psubject);
+    var dat = childData.pdate;
 
     var convert = function(convert){
     return ("<span />", { html: convert }).text();
@@ -89,11 +93,14 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
 
 
    // if(!fail){
+   		pstr += "<hr size=\"10\" color=\"575a87\">"
 	    pstr += "<br>";
-	    pstr += "<h3>" + htmlEncode(subj) + "</h3>";
-	    pstr += "By : " + htmlEncode(name) + ", posted at : " + childData.pdate + "<br>";
-	    pstr += htmlEncode(cont) + "<br>";
+	    pstr += "<h5 style=\"display:inline;\">" + name + "</h5> <h6 style=\"display:inline;\">@: " + dat + "</h6><br>";
+	    pstr += "<h3>" + subj + "</h3>";
+	    pstr += cont + "<br>";
+	    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; text-decoration: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
 	    pstr += "<br>";
+
 	//};
 
     
