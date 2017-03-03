@@ -14,6 +14,10 @@ pcounterRef.on('value', function(snapshot) {
   pcount = snapshot.val();
   document.getElementById("postbutton").disabled = false;
 });
+//turns each html charcter to a like uuhhhh a text charcter
+function htmlEncode( input ) {
+    return String(input).replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
 
 function uploadPost() {
   var pname = document.getElementById("pname").value;
@@ -63,9 +67,9 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
-    var cont = childData.pcontent+childData.pname+childData.psubject+childData.pdate;
+    //var cont = childData.pcontent+childData.pname+childData.psubject+childData.pdate;
     var fail = false;
-    for (var i = 0, len = cont.length; i < len; i++){
+    /*for (var i = 0, len = cont.length; i < len; i++){
     	if(cont[i]=='<'||cont[i]=='>'){
     		pstr += "<h3 style = \"color : red \">NICER TRY</h3><br>";
     		fail = true;
@@ -73,15 +77,24 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
     		break;
     		console.log("in");
     	};
-    }
+    }*/
+    var cont = childData.pcontent;
+    var name = childData.pname;
+    var subj = childData.psubject;
 
-    if(!fail){
-	    pstr += "<br>";
-	    pstr += "<h3>" + childData.psubject + "</h3>";
-	    pstr += "By : " + childData.pname + ", posted at : " + childData.pdate + "<br>";
-	    pstr += childData.pcontent + "<br>";
-	    pstr += "<br>";
+    var convert = function(convert){
+    return ("<span />", { html: convert }).text();
+    //return document.createElement("span").innerText;
 	};
+
+
+   // if(!fail){
+	    pstr += "<br>";
+	    pstr += "<h3>" + htmlEncode(subj) + "</h3>";
+	    pstr += "By : " + htmlEncode(name) + ", posted at : " + childData.pdate + "<br>";
+	    pstr += htmlEncode(cont) + "<br>";
+	    pstr += "<br>";
+	//};
 
     
 
