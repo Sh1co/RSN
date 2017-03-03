@@ -1,47 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>RSN</title>
-
-  <script>
-    function chooseGroup ( groupid ) {
-      sessionStorage.setItem('cg', groupid );
-    }
-  </script>
-    <style>
-     		 @import "LayoutStyle.css";
-    </style>
+    <link rel="stylesheet" href="LayoutStyle.css">
   </head>
   <body>
   <img src="RSN logo.png" width="150" height="150" align = "center">
   <hr size="30" color="575a87">
   <div id="whole">
     <div class="verticalLine">
-      <ul id="l_list">
-      <li><a href="groups.html" onclick="chooseGroup('test1');">Test1</a></li>
-      <li><a href="groups.html" onclick="chooseGroup('test2');">Test2</a></li>
-      <li><a href="index.html">Home</a></li>
-      </ul>
+      <ul id="l_list"></ul>
     </div>
 
 
     <div class="main" id = "center" align ="center">
-		  <h3><p id="gpid" ></p><h3>
+      <h3><p id="gpid" ></p><h3>
 
-		  	<h3>Name: <input type="text" id="pname"></h3>
-		  	<h5>Leave blank for "Anonymous"</h5>
-		  <h3>Subject: <input type="text" size="40" id="psubject"></h3>
-		 <h3> Content: <br><br> <textarea rows="4" cols="50" id="pcontent"></textarea></h3>
-		  <button style="background-color: #575a87; color: white; border: none;" disabled=true onclick="uploadPost();" id="postbutton">Post</button>
-		  <p id="pdisplay"></p>
+      <h3>Name: <input type="text" id="pname"></h3>
+      <h5>Leave blank for "Anonymous"</h5>
+      <h3>Subject: <input type="text" size="40" id="psubject"></h3>
+      <h3> Content: <br><br> <textarea rows="4" cols="50" id="pcontent"></textarea></h3>
+      <button style="background-color: #575a87; color: white; border: none;" disabled=true onclick="uploadPost();" id="postbutton">Post</button>
+      <p id="pdisplay"></p>
     </div>
-
 
   </div>
 
   </body>
 
-  <!--<a href="index.html">Home</a>--> <br>
   <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <script src="chooseGroup.js"></script>
   <script src="groups.js"></script>
+  <script src="sidebar.js"></script>
 </html>

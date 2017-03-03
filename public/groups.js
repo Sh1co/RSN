@@ -14,6 +14,7 @@ pcounterRef.on('value', function(snapshot) {
   pcount = snapshot.val();
   document.getElementById("postbutton").disabled = false;
 });
+
 //turns each html charcter to a like uuhhhh a text charcter
 function htmlEncode( input ) {
     return String(input).replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -26,20 +27,10 @@ function uploadPost() {
   var pcontent = document.getElementById("pcontent").value;
   var pdate = ( new Date() ).toUTCString();
 
-  /*firebase.database().ref('groups/' + gpid + '/' + pcount).set({
-    pname: pname,
-    psubject: psubject,
-    pcontent: pcontent,
-    pdate: pdate
-  }).then(
-    function() {
-      pcounterRef.transaction(function(currentValue) {
-          return currentValue + 1;
-      });
-      alert("The post was published with ID : " + pcount);
-      location.reload();
-    }
-  );*/
+  pname = htmlEncode( pname );
+  psubject = htmlEncode( psubject );
+  pcontent = htmlEncode( pcontent );
+
   firebase.database().ref('groups/' + gpid + '/' + pcount).set(
     {
       pname: pname,
@@ -70,42 +61,23 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
-    //var cont = childData.pcontent+childData.pname+childData.psubject+childData.pdate;
-    var fail = false;
-    /*for (var i = 0, len = cont.length; i < len; i++){
-    	if(cont[i]=='<'||cont[i]=='>'){
-    		pstr += "<h3 style = \"color : red \">NICER TRY</h3><br>";
-    		fail = true;
-    		pstr += "<br>";
-    		break;
-    		console.log("in");
-    	};
-    }*/
+
     var cont = htmlEncode(childData.pcontent);
     var name = htmlEncode(childData.pname);
     var subj = htmlEncode(childData.psubject);
     var dat = childData.pdate;
 
     var convert = function(convert){
-    return ("<span />", { html: convert }).text();
-    //return document.createElement("span").innerText;
-	};
+      return ("<span />", { html: convert }).text();
+    };
 
-
-   // if(!fail){
-   		pstr += "<hr size=\"10\" color=\"575a87\">"
-	    pstr += "<br>";
-	    pstr += "<h5 style=\"display:inline;\">" + name + "</h5> <h6 style=\"display:inline;\">@: " + dat + "</h6><br>";
-	    pstr += "<h3>" + subj + "</h3>";
-	    pstr += cont + "<br>";
-	    /*When we make authentication an if will be here to see the tpye of user*/
-	    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; border: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
-	    /*and will end here XD*/
-	    pstr += "<br>";
-
-	//};
-
-    
+ 		pstr += "<hr size=\"10\" color=\"575a87\">"
+    pstr += "<br>";
+    pstr += "<h5 style=\"display:inline;\">" + name + "</h5> <h6 style=\"display:inline;\">@: " + dat + "</h6><br>";
+    pstr += "<h3>" + subj + "</h3>";
+    pstr += cont + "<br>";
+    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; border: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
+    pstr += "<br>";
 
     document.getElementById("pdisplay").innerHTML = pstr;
 
