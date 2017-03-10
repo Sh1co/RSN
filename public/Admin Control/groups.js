@@ -76,6 +76,7 @@ database.ref('groups/' + gpid).once('value', function(snapshot) {
     pstr += "<h5 style=\"display:inline;\">" + name + "</h5> <h6 style=\"display:inline;\">@: " + dat + "</h6><br>";
     pstr += "<h3>" + subj + "</h3>";
     pstr += cont + "<br>";
+    pstr += "<button align=\"right\" style = \"background-color: #f44336; color: white; border: none;\"	onclick=\"Deletepost("+childKey+");location.reload();\">Delete</button>"
     pstr += "<br>";
 
     document.getElementById("pdisplay").innerHTML = pstr;

@@ -1,0 +1,48 @@
+      body {
+        font-family: Roboto, Arial, sans-serif;
+        background: #ECEFF1;
+        color: rgba(0,0,0,0.87);
+      }
+     ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #a1afc9;
+    }
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #575a87;
+    color: white;
+}
+
+.boxed1 {
+    color :#575a87 ;
+    padding: 25px;
+    margin: 25px;
+}
+.verticalLine {
+  border-left: thick solid #575a87;
+  display: inline-block;
+  float:left;
+}
+.main {
+  display: inline-block;
+  /*float:middle;*/
+  align-self: center
+  width:1000;
+}
+.main1 {
+  /*display: inline-block;*/
+  /*float:middle;*/
+  align-self: center
+  width:1000;
+}
